@@ -1,15 +1,16 @@
-package com.jhly.community.model;
+package com.jhly.community.dto;
 
+import com.jhly.community.model.User;
 import lombok.Data;
 
 /**
  * @Auther:JHLY
- * @Date:2019/9/9
- * @Description:com.jhly.community.model
+ * @Date:2019/9/18
+ * @Description:com.jhly.community.dto
  * @Version:1.0
  */
 @Data
-public class Question {
+public class QuestionDTO {
     private Integer id;
     private String title;
     private String description;
@@ -20,5 +21,5 @@ public class Question {
     private Integer viewCount;
     private Integer commentCount;
     private Integer likeCount;
-
+    private User user;
 }
