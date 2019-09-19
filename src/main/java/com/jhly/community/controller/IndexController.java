@@ -1,17 +1,12 @@
 package com.jhly.community.controller;
 
-import com.jhly.community.dto.QuestionDTO;
-import com.jhly.community.mapper.UserMapper;
-import com.jhly.community.model.User;
+import com.jhly.community.dto.PaginationDTO;
 import com.jhly.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @Auther:JHLY
@@ -23,28 +18,14 @@ import java.util.List;
 public class IndexController {
 
     @Autowired
-    private UserMapper userMapper;
-    @Autowired
     private QuestionService questionService;
 
     @GetMapping("/")
-    public String index(HttpServletRequest request,
+    public String index(@RequestParam(name = "page",defaultValue = "1") Integer page,
+                        @RequestParam(name = "size",defaultValue = "5") Integer size,
                         Model model) {
-        Cookie[] cookies = request.getCookies();
-        if (cookies!=null) {
-            for (Cookie cookie : cookies) {
-                if ("token".equals(cookie.getName())) {
-                    String token = cookie.getValue();
-                    User user = userMapper.findByToken(token);
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
-        List<QuestionDTO> questionList =questionService.list();
-        model.addAttribute("quetions",questionList);
+        PaginationDTO pagination =questionService.list(page,size);
+        model.addAttribute("pagination",pagination);
         return "index";
     }
 }
