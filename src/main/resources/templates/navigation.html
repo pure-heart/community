@@ -23,6 +23,7 @@
                     <li th:if="${session.user!= null}">
                         <a href="/publish">提问</a>
                     </li>
+                    <!-- 通过session判断，为空显示登陆，不为空展示信息 -->
                     <li class="dropdown" th:if="${session.user!= null}">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">

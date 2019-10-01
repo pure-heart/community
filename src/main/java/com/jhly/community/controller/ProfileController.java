@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Version:1.0
  */
 @Controller
-public class ProfileControllor {
+public class ProfileController {
 
     @Autowired
     private QuestionService questionService;

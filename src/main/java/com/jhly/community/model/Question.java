@@ -1,6 +1,7 @@
 package com.jhly.community.model;
 
 import lombok.Data;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Auther:JHLY
@@ -9,6 +10,7 @@ import lombok.Data;
  * @Version:1.0
  */
 @Data
+@Repository
 public class Question {
     private Integer id;
     private String title;

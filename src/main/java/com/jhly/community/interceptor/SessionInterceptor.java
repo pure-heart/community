@@ -26,11 +26,17 @@ public class SessionInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Cookie[] cookies = request.getCookies();
+        /**
+         * 为了防止服务器重启session清空后要重新登陆的情况
+         */
+        //cookie没内容不做处理
         if (cookies!=null && cookies.length!=0) {
             for (Cookie cookie : cookies) {
                 if ("token".equals(cookie.getName())) {
+                    //如果cookie里存放了token,根据token取得用户信息
                     String token = cookie.getValue();
                     User user = userMapper.findByToken(token);
+                    //如果存在，放入session
                     if (user != null) {
                         request.getSession().setAttribute("user", user);
                     }

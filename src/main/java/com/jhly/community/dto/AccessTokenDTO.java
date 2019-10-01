@@ -1,6 +1,7 @@
 package com.jhly.community.dto;
 
 import lombok.Data;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Auther:JHLY
@@ -9,6 +10,7 @@ import lombok.Data;
  * @Version:1.0
  */
 @Data
+@Repository
 public class AccessTokenDTO {
     private String client_id;
     private String client_secret;

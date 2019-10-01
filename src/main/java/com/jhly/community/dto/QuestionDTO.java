@@ -2,6 +2,7 @@ package com.jhly.community.dto;
 
 import com.jhly.community.model.User;
 import lombok.Data;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Auther:JHLY
@@ -10,6 +11,7 @@ import lombok.Data;
  * @Version:1.0
  */
 @Data
+@Repository
 public class QuestionDTO {
     private Integer id;
     private String title;

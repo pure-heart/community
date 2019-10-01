@@ -28,8 +28,15 @@ public class QuestionService {
     @Autowired
     private QuestionMapper questionMapper;
 
+    /**
+     * 查询分页
+     * @param page 页数
+     * @param size 每页条数
+     * @return
+     */
     public PaginationDTO list(Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
+        //取得所有条数
         Integer totalCount = questionMapper.count();
         paginationDTO.setPagination(totalCount, page, size);
         if (page < 1) {
@@ -38,7 +45,7 @@ public class QuestionService {
         if (page > paginationDTO.getTotalPage()) {
             page = paginationDTO.getTotalPage();
         }
-        //size*(page-1)
+        //size*(page-1)计算当前起始条数
         Integer offset = size * (page - 1);
         List<Question> questions = questionMapper.list(offset, size);
         List<QuestionDTO> questionDTOList = new ArrayList<>();
@@ -53,6 +60,13 @@ public class QuestionService {
         return paginationDTO;
     }
 
+    /**
+     * 分页显示当前用户的内容
+     * @param userId
+     * @param page
+     * @param size
+     * @return
+     */
     public PaginationDTO list(Integer userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalCount = questionMapper.countByUserId(userId);

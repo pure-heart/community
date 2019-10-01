@@ -1,6 +1,7 @@
 package com.jhly.community.dto;
 
 import lombok.Data;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @Version:1.0
  */
 @Data
+@Repository
 public class PaginationDTO {
     private List<QuestionDTO> questions;
     private Boolean showPrevious;
@@ -19,7 +21,7 @@ public class PaginationDTO {
     private Boolean showNext;
     private Boolean showEndPage;
     private Integer page;
-    private List<Integer> pages = new ArrayList<>();
+    private List<Integer> pages = new ArrayList<>();//当前展示的页数项
     private Integer totalPage;
 
     public void setPagination(Integer totalCount, Integer page, Integer size) {
@@ -35,6 +37,11 @@ public class PaginationDTO {
         pages.add(page);
         for (int i = 1; i <= 3; i++) {
             if (page - i > 0) {
+                /**
+                 * 在此列表中的指定位置插入指定的元素。 将当前位于该位置的元素（如果有）和任何后续元素（向其索引添加一个）移动。
+                 *  index - 要插入指定元素的索引
+                 *  element - 要插入的元素
+                 */
                 pages.add(0,page - i);
             }
             if (page + i <= totalPage) {

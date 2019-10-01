@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
+/**首页展示
  * @Auther:JHLY
  * @Date:2019/9/6
  * @Description:com.jhly.community.controller

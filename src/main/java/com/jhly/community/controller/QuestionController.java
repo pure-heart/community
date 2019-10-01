@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Version:1.0
  */
 @Controller
-public class QuestionControllor {
+public class QuestionController {
 
     @Autowired
     private QuestionService questionService;

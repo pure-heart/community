@@ -17,6 +17,7 @@ public class UserService {
     private UserMapper userMapper;
 
     public void createOrUpdate(User user) {
+        //根据account_id判断是否存在
         User dbUser = userMapper.findByAccountId(user.getAccountId());
         if (dbUser == null){
             //插入
