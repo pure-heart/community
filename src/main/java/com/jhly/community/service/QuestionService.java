@@ -4,6 +4,7 @@ import com.jhly.community.dto.PaginationDTO;
 import com.jhly.community.dto.QuestionDTO;
 import com.jhly.community.exception.CustomizeErrorCode;
 import com.jhly.community.exception.CustomizeException;
+import com.jhly.community.mapper.QuestionExtMapper;
 import com.jhly.community.mapper.QuestionMapper;
 import com.jhly.community.mapper.UserMapper;
 import com.jhly.community.model.Question;
@@ -31,6 +32,8 @@ public class QuestionService {
     private UserMapper userMapper;
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper QuestionExtMapper;
 
     /**
      * 查询所有分页
@@ -129,5 +132,16 @@ public class QuestionService {
             if (updated != 1)
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
         }
+    }
+
+    /**
+     * 计算阅读数
+     * @param id
+     */
+    public void incView(Integer id) {
+        Question record = new Question();
+        record.setId(id);
+        record.setViewCount(1);
+        QuestionExtMapper.incView(record);
     }
 }
