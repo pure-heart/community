@@ -21,7 +21,7 @@ public class CustomizeExceptionHandler {
         if (ex instanceof CustomizeException) {
             model.addAttribute("message", ex.getMessage());
         } else {
-            model.addAttribute("message", "服务冒烟了");
+            model.addAttribute("message", "服务冒烟了,要不你稍后再试试！！！");
         }
         return new ModelAndView("error");
     }
