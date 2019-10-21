@@ -42,8 +42,6 @@ public class AuthorizeController {
     @Autowired
     private AccessTokenDTO accessTokenDTO;
 
-    @Autowired
-    private User user;
 
     /**
      * 点击登录访问获取GitHub授权连接
@@ -76,6 +74,7 @@ public class AuthorizeController {
         GithubUser githubUser = githubProvider.getUser(accessToken);
         if (githubUser != null) {
             String token = UUID.randomUUID().toString();
+            User user = new User();
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));

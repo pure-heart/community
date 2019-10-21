@@ -26,8 +26,6 @@ public class publishController {
     @Autowired
     private QuestionService questionService;
 
-    @Autowired
-    private Question question;
 
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id") Integer id,
@@ -76,6 +74,7 @@ public class publishController {
             model.addAttribute("error","用户未登录");
             return "publish";
         }
+        Question question = new Question();
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
