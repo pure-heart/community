@@ -16,4 +16,9 @@
   <update id="incView" parameterType="com.jhly.community.model.Question">
     update question set view_count = view_count + #{viewCount,jdbcType = INTEGER} where id = #{id}
   </update>
-  </mapper>
+
+  <update id="incCommentCount" parameterType="com.jhly.community.model.Question">
+    update question set comment_count = comment_count + #{commentCount,jdbcType = INTEGER} where id = #{id}
+  </update>
+
+</mapper>

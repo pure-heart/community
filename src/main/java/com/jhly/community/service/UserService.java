@@ -21,9 +21,6 @@ public class UserService {
 
     public void createOrUpdate(User user) {
         //根据account_id判断是否存在
-//        User dbUser = userMapper.findByAccountId(user.getAccountId());
-//        if (dbUser == null){
-        //切换为xml模式
         UserExample userExample = new UserExample();
         userExample.createCriteria().andAccountIdEqualTo(user.getAccountId());
         List<User> users = userMapper.selectByExample(userExample);
@@ -31,17 +28,10 @@ public class UserService {
             //插入
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-//            userMapper.insertUser(user);
             userMapper.insert(user);
         } else {
             //更新
             User dbUser = users.get(0);
-//            dbUser.setGmtModified(System.currentTimeMillis());
-//            dbUser.setAvatarUrl(user.getAvatarUrl());
-//            dbUser.setName(user.getName());
-//            dbUser.setBio(user.getBio());
-//            dbUser.setToken(user.getToken());
-//            userMapper.update(dbUser);
             User updateUser = new User();
             updateUser.setGmtModified(System.currentTimeMillis());
             updateUser.setAvatarUrl(user.getAvatarUrl());

@@ -54,7 +54,6 @@ public class QuestionService {
         }
         //size*(page-1)计算当前起始条数
         Integer offset = size * (page - 1);
-//        List<Question> questions = questionMapper.list(offset, size);
         List<Question> questions = questionMapper.selectByExampleWithRowbounds(new QuestionExample(), new RowBounds(offset, size));
         return getPaginationDTO(paginationDTO, questions);
     }
@@ -66,7 +65,7 @@ public class QuestionService {
      * @param size
      * @return
      */
-    public PaginationDTO list(Integer userId, Integer page, Integer size) {
+    public PaginationDTO list(Long userId, Integer page, Integer size) {
         PaginationDTO paginationDTO = new PaginationDTO();
         QuestionExample example = new QuestionExample();
         example.createCriteria().andCreatorEqualTo(userId);
@@ -80,7 +79,6 @@ public class QuestionService {
         }
         //size*(page-1)
         Integer offset = size * (page - 1);
-        //List<Question> questions = questionMapper.listByUserId(userId,offset, size);
         QuestionExample questionExample = new QuestionExample();
         questionExample.createCriteria().andCreatorEqualTo(userId);
         List<Question> questions = questionMapper.selectByExampleWithRowbounds(questionExample, new RowBounds(offset, size));
@@ -100,7 +98,7 @@ public class QuestionService {
         return paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Long id) {
         Question question = questionMapper.selectByPrimaryKey(id);
         if (question == null)
             throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
@@ -116,6 +114,9 @@ public class QuestionService {
             //创建
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
             questionMapper.insert(question);
         }else{
             //更新
@@ -138,7 +139,7 @@ public class QuestionService {
      * 计算阅读数
      * @param id
      */
-    public void incView(Integer id) {
+    public void incView(Long id) {
         Question record = new Question();
         record.setId(id);
         record.setViewCount(1);
