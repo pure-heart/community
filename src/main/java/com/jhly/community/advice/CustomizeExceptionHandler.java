@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 异常界面处理
+ * 自定义异常类
  *
  * @Auther:JHLY
  * @Date:2019/10/16

@@ -1,5 +1,7 @@
 package com.jhly.community.exception;
 
+import lombok.Data;
+
 /**
  * 自定义异常类
  *
@@ -8,6 +10,7 @@ package com.jhly.community.exception;
  * @Description:com.jhly.community.exception
  * @Version:1.0
  */
+@Data
 public class CustomizeException extends RuntimeException {
     private String message;
     private Integer code;
@@ -15,14 +18,5 @@ public class CustomizeException extends RuntimeException {
     public CustomizeException(ICustomizeErrorCode errorCode) {
         this.code = errorCode.getCode();
         this.message = errorCode.getMessage();
-    }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
-    public Integer getCode() {
-        return code;
     }
 }
