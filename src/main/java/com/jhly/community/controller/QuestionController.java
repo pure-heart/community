@@ -1,7 +1,6 @@
 package com.jhly.community.controller;
 
 import com.jhly.community.dto.QuestionDTO;
-import com.jhly.community.mapper.QuestionMapper;
 import com.jhly.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
